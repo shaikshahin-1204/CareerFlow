@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareerFlow — Career Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" data-page="home"><span class="brand-mark">C</span> CareerFlow</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+  <nav id="mainNav">
+    <a href="#" data-page="home">Home</a>
+    <a href="#" data-page="dashboard">Dashboard</a>
+    <a href="#" data-page="applications">Applications</a>
+    <a href="#" data-page="interviews">Interviews</a>
+    <a href="#" data-page="reminders">Reminders</a>
+    <a href="#" data-page="analytics">Analytics</a>
+  </nav>
+  <button class="button small" data-page="dashboard">Open app →</button>
+</header>
+
+<main>
+  <section class="page active" id="home">
+    <div class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">YOUR CAREER JOURNEY, ORGANIZED</span>
+        <h1>Make your next<br><span>career move</span> count.</h1>
+        <p>Keep job applications, interviews, follow-ups and career progress together in one simple workspace.</p>
+        <div class="hero-actions">
+          <button class="button" data-page="dashboard">Get started free</button>
+          <button class="button secondary" data-page="applications">Explore features</button>
+        </div>
+        <p class="muted">A simple demo project · Your entries stay in this browser</p>
+      </div>
+      <div class="preview-card">
+        <div class="preview-head"><span>My career dashboard</span><span class="live-dot">● Live overview</span></div>
+        <div class="stats">
+          <div><small>Applications</small><strong id="homeApps">0</strong><em>Total tracked</em></div>
+          <div><small>Interviews</small><strong id="homeInterviews">0</strong><em>Rounds planned</em></div>
+          <div><small>Offers</small><strong id="homeOffers">0</strong><em>Great progress</em></div>
+        </div>
+        <div class="preview-pipeline"><b>Application pipeline</b><div class="pipeline-bars"><i></i><i></i><i></i><i></i><i></i></div><div class="pipeline-labels"><span>Saved</span><span>Applied</span><span>Review</span><span>Interview</span><span>Offer</span></div></div>
+        <div class="tip">✦ <span><b>Small steps add up.</b><br>Track each opportunity and keep moving forward.</span></div>
+      </div>
+    </div>
+    <section class="section">
+      <div class="section-title"><span class="eyebrow">EVERYTHING IN ONE PLACE</span><h2>A calmer way to manage your job search</h2><p>Simple tools to help you stay organized and prepared.</p></div>
+      <div class="feature-grid">
+        <article class="feature"><div class="icon">▤</div><h3>Application tracker</h3><p>Save companies, job titles, links and application status.</p></article>
+        <article class="feature"><div class="icon">◷</div><h3>Interview planner</h3><p>Keep interview dates, rounds and preparation notes together.</p></article>
+        <article class="feature"><div class="icon">✓</div><h3>Follow-up reminders</h3><p>Record important dates so follow-ups do not slip your mind.</p></article>
+        <article class="feature"><div class="icon">▥</div><h3>Progress analytics</h3><p>See your applications, interviews and offers at a glance.</p></article>
+      </div>
+    </section>
+  </section>
+
+  <section class="page" id="dashboard">
+    <div class="page-heading"><div><span class="eyebrow">OVERVIEW</span><h1>Your dashboard</h1><p>Welcome back. Here is your career search at a glance.</p></div><button class="button" data-page="applications">+ Add application</button></div>
+    <div class="stats dashboard-stats">
+      <div class="stat-card"><small>Total applications</small><strong id="statApps">0</strong><em>Opportunities tracked</em></div>
+      <div class="stat-card"><small>Interviews</small><strong id="statInterviews">0</strong><em>Interview records</em></div>
+      <div class="stat-card"><small>Offers</small><strong id="statOffers">0</strong><em>Positive outcomes</em></div>
+      <div class="stat-card"><small>Follow-ups</small><strong id="statReminders">0</strong><em>Reminders saved</em></div>
+    </div>
+    <div class="content-grid">
+      <div class="panel"><div class="panel-title"><h2>Recent applications</h2><button class="text-button" data-page="applications">View all →</button></div><div id="recentApps" class="empty">No applications yet. Add your first opportunity.</div></div>
+      <div class="panel"><h2>Quick actions</h2><div class="quick-links"><button data-page="applications">＋ Add a job application</button><button data-page="interviews">＋ Plan an interview</button><button data-page="reminders">＋ Create a reminder</button><button data-page="analytics">▥ View my progress</button></div></div>
+    </div>
+  </section>
+
+  <section class="page" id="applications">
+    <div class="page-heading"><div><span class="eyebrow">YOUR OPPORTUNITIES</span><h1>Applications</h1><p>Keep track of every role you are interested in.</p></div></div>
+    <form id="applicationForm" class="panel form-grid">
+      <label>Company name<input id="company" required placeholder="e.g. ABC Technologies"></label>
+      <label>Job title<input id="jobTitle" required placeholder="e.g. Software Intern"></label>
+      <label>Status<select id="appStatus"><option>Saved</option><option>Applied</option><option>Under Review</option><option>Interview</option><option>Offer</option><option>Rejected</option></select></label>
+      <label>Application date<input id="appDate" type="date"></label>
+      <label class="wide">Job link (optional)<input id="jobLink" type="url" placeholder="https://company.com/careers"></label>
+      <button class="button wide" type="submit">Save application</button>
+    </form>
+    <div class="panel"><div class="panel-title"><h2>All applications</h2><span class="muted" id="appCount">0 records</span></div><div class="table-wrap"><table><thead><tr><th>Company / Role</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody id="applicationRows"></tbody></table></div></div>
+  </section>
+
+  <section class="page" id="interviews">
+    <div class="page-heading"><div><span class="eyebrow">GET PREPARED</span><h1>Interviews</h1><p>Organize upcoming interview rounds and your preparation notes.</p></div></div>
+    <form id="interviewForm" class="panel form-grid">
+      <label>Company<input id="interviewCompany" required placeholder="Company name"></label>
+      <label>Interview round<input id="interviewRound" required placeholder="e.g. Technical round"></label>
+      <label>Date and time<input id="interviewDate" type="datetime-local" required></label>
+      <label>Meeting link (optional)<input id="meetingLink" type="url" placeholder="https://..."></label>
+      <label class="wide">Preparation notes<textarea id="interviewNotes" rows="3" placeholder="Topics to revise, questions to ask..."></textarea></label>
+      <button class="button wide" type="submit">Save interview</button>
+    </form>
+    <div id="interviewList" class="cards-list"></div>
+  </section>
+
+  <section class="page" id="reminders">
+    <div class="page-heading"><div><span class="eyebrow">STAY ON TRACK</span><h1>Reminders</h1><p>Record follow-ups, deadlines and career tasks.</p></div></div>
+    <form id="reminderForm" class="panel form-grid">
+      <label>Reminder title<input id="reminderTitle" required placeholder="e.g. Follow up with recruiter"></label>
+      <label>Due date<input id="reminderDate" type="date" required></label>
+      <label class="wide">Details (optional)<textarea id="reminderDetails" rows="2" placeholder="Add a short note"></textarea></label>
+      <button class="button wide" type="submit">Add reminder</button>
+    </form>
+    <div id="reminderList" class="cards-list"></div>
+  </section>
+
+  <section class="page" id="analytics">
+    <div class="page-heading"><div><span class="eyebrow">YOUR PROGRESS</span><h1>Analytics</h1><p>Understand how your career search is progressing.</p></div></div>
+    <div class="stats dashboard-stats">
+      <div class="stat-card"><small>Applications</small><strong id="anApps">0</strong></div>
+      <div class="stat-card"><small>Interview rate</small><strong id="anRate">0%</strong></div>
+      <div class="stat-card"><small>Offer rate</small><strong id="anOfferRate">0%</strong></div>
+    </div>
+    <div class="panel"><h2>Application status breakdown</h2><div id="statusBreakdown" class="breakdown"></div><p class="muted">These figures are calculated from the applications you add to this browser.</p></div>
+  </section>
+
+  <section class="page" id="pricing">
+    <div class="section-title"><span class="eyebrow">SIMPLE AND CLEAR</span><h1>Free student project</h1><p>This simplified version includes the core tracking features at no cost.</p></div>
+    <div class="feature-grid"><article class="feature price"><h2>Starter</h2><strong>Free</strong><p>Application tracking, interview planner, reminders and basic analytics.</p><button class="button" data-page="dashboard">Start using</button></article></div>
+  </section>
+
+  <section class="page" id="faq">
+    <div class="section-title"><span class="eyebrow">HELP CENTER</span><h1>Frequently asked questions</h1></div>
+    <div class="panel faq"><h3>Does this website need an account?</h3><p>No. This beginner version works locally in your browser and does not include login.</p><h3>Where is my information saved?</h3><p>Entries are stored in your browser using localStorage. Clearing browser data may remove them.</p><h3>Can I access my data from another device?</h3><p>Not in this version. A real multi-user service needs a backend and database.</p><h3>Can I publish this on GitHub Pages?</h3><p>Yes. This static HTML, CSS and JavaScript project can be hosted using GitHub Pages.</p></div>
+  </section>
+</main>
+
+<footer><div><a class="brand" href="#" data-page="home"><span class="brand-mark">C</span> CareerFlow</a><p>Organize your opportunities. Prepare with confidence.</p></div><div class="footer-links"><a href="#" data-page="applications">Applications</a><a href="#" data-page="interviews">Interviews</a><a href="#" data-page="pricing">Pricing</a><a href="#" data-page="faq">FAQ</a></div><small>© 2026 CareerFlow · Beginner demo project</small></footer>
+<script src="script.js"></script>
+</body>
+</html>
